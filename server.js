@@ -1,11 +1,11 @@
 const express = require('express');
 const fileUpload = require('./lib/index');
 const app = express();
-const testService = require('./service/testService');
 const createContact = require('./service/createContact');
+const sendErrorEmail = require('./service/sendEmail');
 
 
-const {PORT} = require('./config.js');
+const {PORT, EMAILTO} = require('./config.js');
 
 app.use('/form', express.static(__dirname + '/index.html'));
 
@@ -17,51 +17,94 @@ app.get('/ping', function(req, res) {
 });
 
 app.post('/upload', function(req, res) {
+   
+  try {
+    if ( !req.body ) {
+      return res.status(500).send("Invalid Data form");
+    }
+    
+    saveEntry(req.body);
+ 
+    if (req.files  && Object.keys(req.files).length != 0) {
+      console.log('req.files >>>', req.files); // eslint-disable-line
+      console.log('number of files >>>', req.files.sampleFile.length);
+      if (req.files.sampleFile.length !=undefined) {
+        for (var i = 0; i < req.files.sampleFile.length; i++) {
+          console.log('file number >>>',i);
+          uploadfile(req.files.sampleFile[i]);
+        }
+      }
+      else {
+        uploadfile(req.files.sampleFile);
+      }
+    }
+  } catch (err){
+    console.log(err);
+    sendErrorEmail(err + " with form " + err);
+    return res.status(500).send(err);
+  }
+  return res.status(200).send("OK");
+});
+
+function uploadfile(file) {
+
   let sampleFile;
   let uploadPath;
-  console.log("My name is : ",req.body.name);
-  
-  test(req.body);
 
-  if (!req.files || Object.keys(req.files).length === 0) {
-    res.status(400).send('No files were uploaded.');
-    return;
-  }
-
-  console.log('req.files >>>', req.files); // eslint-disable-line
-  console.log('number of files >>>', req.files.sampleFile.length);
-  if(req.files.sampleFile.length !=undefined) {
-    for(var i = 0; i < req.files.sampleFile.length; i++) {
-      console.log('file number >>>',i);
-      uploadfile(req.files.sampleFile[i]);
-    }
-  }
-  else {
-    uploadfile(req.files.sampleFile)
-  }
- 
-  function uploadfile(file) {
+  if (checkFileType(file.data)){
     sampleFile = file;
-
+  
     uploadPath = __dirname + '/uploads/' + sampleFile.name;
-
+  
     sampleFile.mv(uploadPath, function(err) {
       if (err) {
-        return res.status(500).send(err);
+        console.log(err);
+        throw err;
       }
-  });}
-  res.send('File uploaded');
-});
+    });
+          
+  }
+  else {
+    throw ("unkown file format");
+  }
+}
 
+function checkFileType(bufferData) {
+
+  var headerArray = new Uint8Array(bufferData).subarray(0, 4);      
+  var header = "";
+  
+  for (var i = 0; i < headerArray.length; i++) {
+    header += headerArray[i].toString(16);
+  }
+  
+  var type = false;
+  switch (header) {
+    case "89504e47":
+      type = true;
+      break;
+    case "47494638":
+      type = true;
+      break;
+    case "ffd8ffe0":
+    case "ffd8ffe1":
+    case "ffd8ffe2":
+    case "ffd8ffe3":
+    case "ffd8ffe8":
+      type = true;
+      break;
+    default:
+      type = false; 
+      break;
+  }
+  return type;
+}
 
 app.listen(PORT, function() {
-  console.log('Express server listening on port ', PORT); // eslint-disable-line
-  console.log("My enviroment ", process.env.PABLO);
+  console.log('Express server listening on port ', PORT, EMAILTO); // eslint-disable-line
 });
 
-async function test(req) {
-  console.log("I'm testing");
-  await testService.test();
+function saveEntry(req) {
   let contact = {
     email: req.email, 
     firstName: req.firstName,
@@ -69,10 +112,10 @@ async function test(req) {
     phone: req.phone,
     company: req.company,
     companyDescription: req.companyDescription,
-    website: "https://weveris.com",
+    website: req.website,
     language: req.language
   };
 
-   createContact.hubSpotCreateContact(contact);
+  createContact.hubSpotCreateContact(contact);
 }
 

@@ -4,8 +4,6 @@ node_js:
   - "11"
   - "12"
   
-env:
-  - PABLO=HOLITA 
 script:
   - npm run lint
   - npm test

@@ -23,7 +23,7 @@
 </style>
 <script src="/combo/?browserId=other&minifierType=&languageId=en_US&b=7201&t=1573511642052&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/PageRenderer/WizardPageRenderer.soy.js&/o/js/resolved-module/frontend-taglib-clay$clay-modal@2.18.1/lib/ClayModal.soy.js&/o/js/resolved-module/frontend-taglib-clay$clay-modal@2.18.1/lib/ClayModal.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/util/visitors.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/FormRenderer/FormSupport.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/PageRenderer/PageRenderer.soy.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/PageRenderer/PageRenderer.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/FormRenderer/FormRenderer.soy.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/FormRenderer/FormRenderer.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/util/fetch.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/util/evaluation.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleActivePageUpdated.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldBlurred.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldEdited.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldFocused.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldRemoved.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldRepeated.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFormSubmitted.es.js"></script>
 <div class="portlet-forms">
-    <form action="http://localhost:8000/upload" method='post' encType="multipart/form-data">
+    <form action="#" id="registrationForm" method='post' encType="multipart/form-data">
 
         <input class="field form-control pablo" id="_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormPortlet_INSTANCE_bLd3JZzP4vKi_languageId" name="language" type="hidden" value="EN" style="display: none;">
 
@@ -64,7 +64,8 @@
                                                         </svg>
                                                     </span>
                                                 </label>
-                                                <input class="ddm-field-text form-control" name="firstName" type="text" placeholder="First Name" value="" style="">
+												<input class="ddm-field-text form-control" name="firstName" id="firstName" type="text" placeholder="First Name" value="" style="" minlength="2" required>
+												<div class="form-feedback-group" id="firstNameError" style="display:none;"><div class="form-feedback-item help-block">This field is required.</div></div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-ddm" data-ddm-field-row="1" data-ddm-field-page="0" data-ddm-field-column="1">
@@ -77,7 +78,8 @@
                                                         </svg>
                                                     </span>
                                                 </label>
-                                                <input class="ddm-field-text form-control" name="lastName" type="text" placeholder="Last Name" value="" style="">
+												<input class="ddm-field-text form-control" name="lastName" id="lastName"  type="text" placeholder="Last Name" value="" style="" minlength="2" required>
+												<div class="form-feedback-group" id="lastNameError" style="display:none;"><div class="form-feedback-item help-block">This field is required.</div></div>
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +94,7 @@
                                                         </svg>
                                                     </span>
                                                 </label>
-												<input class="ddm-field-text form-control" name="email" id="email" type="email" placeholder="E-mail" value="" style="">
+												<input class="ddm-field-text form-control" name="email" id="email" type="email" placeholder="E-mail" value="" style="" minlength="2" required>
 												<div class="form-feedback-group" id="emailError" style="display:none;"><div class="form-feedback-item help-block">This field is required.</div></div>
                                             </div>
                                         </div>
@@ -108,7 +110,8 @@
                                                         </svg>
                                                     </span>
                                                 </label>
-                                                <input class="ddm-field-text form-control" name="phone" type="text" placeholder="Telephone" value="" style="">
+												<input class="ddm-field-text form-control" name="phone" id="phone" type="number" placeholder="Telephone" value="" style="" minlength="2" required>
+												<div class="form-feedback-group" id="phoneError" style="display:none;"><div class="form-feedback-item help-block">This field is required.</div></div>
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +126,8 @@
                                                         </svg>
                                                     </span>
                                                 </label>
-                                                <input class="ddm-field-text form-control" name="company" type="text" placeholder="Company Name" value="" style="">
+												<input class="ddm-field-text form-control" name="company" id="company" type="text" placeholder="Company Name" value="" style="" minlength="2" required>
+												<div class="form-feedback-group" id="companyError" style="display:none;"><div class="form-feedback-item help-block">This field is required.</div></div>
                                             </div>
                                         </div>
                                     </div>
@@ -132,6 +136,14 @@
                                             <div class="form-group" data-field-name="_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormPortlet_INSTANCE_bLd3JZzP4vKi_ddm$$TellUsAboutYourBusines$sjFGWoPP$0$$en_US">
                                                 <label>Tell us about your busines </label>
                                                 <textarea class="ddm-field-text form-control" id="companyDescription" name="companyDescription" type="text"></textarea>
+                                            </div>
+                                        </div>
+									</div>
+									<div class="position-relative row">
+                                        <div class="col-md-12 col-ddm" data-ddm-field-row="5" data-ddm-field-page="0" data-ddm-field-column="0">
+                                            <div class="form-group" data-field-name="_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormPortlet_INSTANCE_bLd3JZzP4vKi_ddm$$TellUsAboutYourBusines$sjFGWoPP$0$$en_US">
+                                                <label>Website: </label>
+                                                <input class="ddm-field-text form-control" name="website" id="website" type="text" placeholder="Website" value="" style="" >
                                             </div>
                                         </div>
                                     </div>
@@ -150,7 +162,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-item input-group-prepend">
                                                            <input class="field form-control" disabled="disabled" id="inputFile" type="text" value="" style="">
-															<input  id="fileSelector" class="btn btn-secondary select-button" type="file" name="sampleFile" multiple style="display:none;" onchange="document.getElementById('inputFile').value = this.value;"/>
+															<input  id="fileSelector" class="btn btn-secondary select-button" type="file" name="sampleFile" multiple style="display:none;" onchange="document.getElementById('inputFile').value = this.value;" accept="image/*"/>
 														</div>
                                                          <div class="input-group-append input-group-item input-group-item-shrink">
                                                             <button class="btn btn-secondary select-button" type="button" onclick="document.getElementById('fileSelector').click();"><span class="lfr-btn-label">Select</span></button>
@@ -917,19 +929,77 @@ Liferay.fire('DMMFieldTypesReady');})();})();
 	//form validation
 	//<div class="form-feedback-group"><div class="form-feedback-item help-block">This field is required.</div></div>
 
-	const email = document.getElementById("email");
+		const firstName = document.getElementById("firstName");
+		const lastName = document.getElementById("lastName");
+		const email = document.getElementById("email");
+		const phone = document.getElementById("phone");
+		const company = document.getElementById("company");
+		const form = document.getElementById("registrationForm");
+		
 
-		email.addEventListener("input", function (event) {
-		if (email.validity.typeMismatch) {
-			email.setCustomValidity("I am expecting an e-mail address!");
-			document.getElementById("emailError").style.display = "block";	.has-error
-			email.classList.add("has-error");
-		console.log("invalid");
-		} else {
-			email.setCustomValidity("");
-			document.getElementById("emailError").style.display = "none";	
-			console.log("valid");
+		/*firstName.addEventListener("input", function (event) {
+			console.log(firstName.id);
+			/*if (!firstName.checkValidity()) {
+				document.getElementById("firstNameError").style.display = "block";
+				firstName.classList.add("has-error");
+				
+			} else {
+				document.getElementById("firstNameError").style.display = "none";	
+				firstName.classList.remove("has-error");
+			}
+			validateField(firstName);
+		});*/
+		firstName.addEventListener("input", function (event) {validateField(firstName)});
+		firstName.addEventListener("focusout", function (event) {validateField(firstName)});
+
+		lastName.addEventListener("input", function (event) {validateField(lastName)});
+		lastName.addEventListener("focusout", function (event) {validateField(lastName)});
+
+		email.addEventListener("input", function (event) {validateField(email)});
+		email.addEventListener("focusout", function (event) {validateField(email)});
+
+		phone.addEventListener("input", function (event) {validateField(phone)});
+		phone.addEventListener("focusout", function (event) {validateField(phone)});
+
+		company.addEventListener("input", function (event) {validateField(company)});
+		company.addEventListener("focusout", function (event) {validateField(company)});
+
+		function validateField(element) {
+			var error = false;
+			if (!element.checkValidity()) {
+				document.getElementById(element.id+"Error").style.display = "block";
+				element.classList.add("has-error");
+				error = true;
+			} else {
+				document.getElementById(element.id+"Error").style.display = "none";	
+				element.classList.remove("has-error");
+			}
+			return error;
 		}
+
+
+		form.addEventListener("submit", function (event) {
+			if(validateField(firstName) 
+				|| validateField(lastName) 
+				|| validateField(email) 
+				|| validateField(phone)
+				|| validateField(company)){
+					event.preventDefault();
+				}
+				event.preventDefault();
+				var formData = new FormData( document.getElementById("registrationForm") );
+				var request = new XMLHttpRequest();
+				request.open("POST", "http://localhost:8000/upload");
+				request.send(formData);
+				request.onload = function() {
+				if (request.status != 200) { // analyze HTTP status of the response
+					alert(`Error please try again`); // e.g. 404: Not Found
+				} else { // show the result
+					//alert(`Done, got ${request.response.length} bytes`); // response is the server
+					window.location.href = "scintillam.com";
+				}
+				};
+				
 		});
 </script>
 
