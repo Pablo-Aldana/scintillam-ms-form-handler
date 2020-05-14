@@ -5,9 +5,11 @@ const createContact = require('./service/createContact');
 const sendErrorEmail = require('./service/sendEmail');
 
 
-const {PORT, EMAILTO} = require('./config.js');
+const {PORT} = require('./config.js');
 
-app.use('/form', express.static(__dirname + '/index.html'));
+if(process.env.NODE_ENV == "DEV") {
+  app.use('/form', express.static(__dirname + '/index.html'));
+}
 
 // default options
 app.use(fileUpload());
@@ -101,7 +103,7 @@ function checkFileType(bufferData) {
 }
 
 app.listen(PORT, function() {
-  console.log('Express server listening on port ', PORT, EMAILTO); // eslint-disable-line
+  console.log('Express server listening on port ', PORT); // eslint-disable-line
 });
 
 function saveEntry(req) {

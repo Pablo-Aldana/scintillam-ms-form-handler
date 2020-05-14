@@ -7,5 +7,6 @@ module.exports = {
   PASSWORD: process.env.PASSWORD,
   EMAILHOST: process.env.EMAILHOST,
   EMAILTO: process.env.EMAILTO,
+  DEV: process.env.DEV,
   HUBSPOTFORMURL: process.env.HUBSPOTFORMURL
 };
