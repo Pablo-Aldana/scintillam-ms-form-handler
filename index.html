@@ -23,7 +23,7 @@
 </style>
 <script src="/combo/?browserId=other&minifierType=&languageId=en_US&b=7201&t=1573511642052&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/PageRenderer/WizardPageRenderer.soy.js&/o/js/resolved-module/frontend-taglib-clay$clay-modal@2.18.1/lib/ClayModal.soy.js&/o/js/resolved-module/frontend-taglib-clay$clay-modal@2.18.1/lib/ClayModal.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/util/visitors.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/FormRenderer/FormSupport.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/PageRenderer/PageRenderer.soy.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/PageRenderer/PageRenderer.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/FormRenderer/FormRenderer.soy.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/components/FormRenderer/FormRenderer.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/util/fetch.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/util/evaluation.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleActivePageUpdated.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldBlurred.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldEdited.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldFocused.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldRemoved.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFieldRepeated.es.js&/o/js/resolved-module/dynamic-data-mapping-form-renderer@4.0.32/js/store/actions/handleFormSubmitted.es.js"></script>
 <div class="portlet-forms">
-    <form action="#" id="registrationForm" method='post' encType="multipart/form-data">
+    <form action="#" id="registrationForm" nonvalidate method='post' encType="multipart/form-data">
 
         <input class="field form-control pablo" id="_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormPortlet_INSTANCE_bLd3JZzP4vKi_languageId" name="language" type="hidden" value="EN" style="display: none;">
 
@@ -924,7 +924,7 @@ var dynamicDataMappingFormFieldType4040FieldBaseWithRepetitionControlsEs1 = dyna
 Liferay.fire('DMMFieldTypesReady');})();})();
 });
 // 
-</script>	
+</script>	-->
 <script>
 	//form validation
 	//<div class="form-feedback-group"><div class="form-feedback-item help-block">This field is required.</div></div>
@@ -989,7 +989,7 @@ Liferay.fire('DMMFieldTypesReady');})();})();
 				event.preventDefault();
 				var formData = new FormData( document.getElementById("registrationForm") );
 				var request = new XMLHttpRequest();
-				request.open("POST", "http://localhost:8000/upload");
+				request.open("POST", "https://localhost:8000/upload");
 				request.send(formData);
 				request.onload = function() {
 				if (request.status != 200) { // analyze HTTP status of the response

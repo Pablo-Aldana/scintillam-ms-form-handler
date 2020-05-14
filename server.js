@@ -6,7 +6,7 @@ const sendErrorEmail = require('./service/sendEmail');
 const cors = require('cors');
 
 const corsOptions = {
-  origin: 'https://scintillam.com/*',
+  origin: 'https://scintillam.com',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
@@ -17,13 +17,13 @@ if(process.env.NODE_ENV == "DEV") {
 }
 
 // default options
-app.use(cors());
+//app.use(cors());
 
 app.get('/ping', function(req, res) {
   res.send('pong');
 });
 
-app.post('/upload', function(req, res) {
+app.post('/upload', cors(corsOptions), function(req, res) {
    
   try {
     if ( !req.body ) {
