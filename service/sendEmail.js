@@ -8,7 +8,7 @@ const message = {
     subject: "Welcome to Scintillam"
   }
 };
-const {EMAIL, PASSWORD, EMAILHOST, EMAILTO} = require("../config.js");
+const {EMAIL, PASSWORD, EMAILHOST, HOSTNAME, EMAILTO} = require("../config.js");
 
 const fs = require('fs');
 
@@ -18,6 +18,7 @@ const readFile = promisify(fs.readFile);
 const path = require('path');
 
 const transporter = nodemailer.createTransport({
+  name: HOSTNAME,
   host: EMAILHOST,
   port: 587,
   secure: false, // true for 465, false for other ports
@@ -37,14 +38,20 @@ async function sendEmail(contact) {
   let filePath = path.join(__dirname, 'mailTemplate'+contact.language+'.html');
   
   // send mail with defined transport object
-  let info = await transporter.sendMail({
+	let info = await transporter.sendMail({
     from: `"Scintillam" ${EMAIL}`, // sender address
     to: contact.email, // list of receivers
     //subject: "Hello ✔", // Subject line
     subject: message[contact.language].subject + " " + contact.firstName,
     text: message[contact.language].bodyText, // plain text body
     html: await readFile(filePath, 'utf8') // html body
-  });
+  }/*, function(err){
+	 if(err) {
+		console.log("I'm an error",err);
+	}else{
+		console.log("Message sent: %s", info.messageId);
+		console.log("sent");}
+  }*/);
 
   console.log("Message sent: %s", info.messageId);
 }

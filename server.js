@@ -25,7 +25,7 @@ app.get('/ping', function(req, res) {
 });
 
 app.post('/upload', cors(), function(req, res) {
-  
+
   try {
     if ( !req.body ) {
       return res.status(500).send("Invalid Data form");
