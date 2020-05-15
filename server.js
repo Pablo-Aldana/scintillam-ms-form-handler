@@ -17,14 +17,15 @@ if(process.env.NODE_ENV == "DEV") {
 }
 
 // default options
-app.use(cors());
+//app.use(cors());
+app.use(fileUpload());
 
 app.get('/ping', function(req, res) {
   res.send('pong');
 });
 
-app.post('/upload', function(req, res) {
-   
+app.post('/upload', cors(), function(req, res) {
+  
   try {
     if ( !req.body ) {
       return res.status(500).send("Invalid Data form");

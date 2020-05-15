@@ -989,7 +989,7 @@ Liferay.fire('DMMFieldTypesReady');})();})();
 				event.preventDefault();
 				var formData = new FormData( document.getElementById("registrationForm") );
 				var request = new XMLHttpRequest();
-				request.open("POST", "https://localhost:8000/upload");
+				request.open("POST", "http://localhost:8000/upload");
 				request.send(formData);
 				request.onload = function() {
 				if (request.status != 200) { // analyze HTTP status of the response
