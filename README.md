@@ -13,7 +13,7 @@ This allows to have your own branded form with your own logic integrated with Hu
 
 It has image validation by header so that avoid malicious files to be uploaded.
 
-# Install
+## Install
 ```bash
 # With NPM
 npm i install
@@ -26,10 +26,12 @@ node server.js
 docker build -t scintillam-ms-form-handler .
 docker run -ti -p 8000:8000 -v /Users/Pablo/Downloads/file-upload/example:/app/uploads scintillam-ms-form-handler:latest
 
-
-# Usage
+```
+## Usage
 When form is submited. Mandatory fields are validated on client side and server side. 
 File is upload to uploads folder. It can be mapped with a volume using docker.
 
-#Credit
-Created for [Scintillam](https://www.scintillam.com)
+
+
+## Credit
+Created by [VIVE](https://vivelaapp.es) a  [Scintillam](https://www.scintillam.com) company
